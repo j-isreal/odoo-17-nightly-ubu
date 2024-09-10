@@ -36,7 +36,7 @@ Follow the on-screen directions to complete the install.
 ## Docker Images
 I'm creating a Docker image for use with this project since there is no Odoo 17 Ubuntu 24.04 Docker image yet.
 
-- link
+- [Docker README.md](https://github.com/j-isreal/odoo-17-nightly-ubu/blob/main/docker/README.md)
 
 <br/><br/>
 ### Visit my website
