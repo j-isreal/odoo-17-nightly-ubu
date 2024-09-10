@@ -33,8 +33,8 @@ Follow the on-screen directions to complete the install.
 <br/>
 
 
-## Docker Image
-I'm creating a Docker image for use with this project since there is no Odoo 17 Docker image yet.
+## Docker Images
+I'm creating a Docker image for use with this project since there is no Odoo 17 Ubuntu 24.04 Docker image yet.
 
 - link
 
