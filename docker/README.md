@@ -2,7 +2,10 @@
 Readme for docker image and docker compose
 
 ## Docker Image
+Link to Docker Hub images coming soon!
 
+- check back later
+- 
 
 <br/><br/>
 ### Visit my website
