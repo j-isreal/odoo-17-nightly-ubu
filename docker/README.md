@@ -2,7 +2,7 @@
 Readme for docker images and docker compose files
 <br/>
 
-- **Before using these Docker files, please read the project README.md!**
+- **Before using these Docker files, please read the project [README.md](https://github.com/j-isreal/odoo-17-nightly-ubu/blob/aaf555db0437d9c25a7ce8da04320eb30ca9b321/README.md)!**
 
 - Project website: https://www.jinet.us/dev/dev-projects/setting-up-odoo-17-ubuntu/
 
