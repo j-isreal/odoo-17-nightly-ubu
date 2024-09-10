@@ -1,7 +1,9 @@
-# odoo-17-nightly-ubu docker README
-Readme for docker image and docker compose
+# odoo-17-nightly-ubu Docker README
+Readme for docker images and docker compose files
 
-## Docker Image
+<br/>
+
+## Docker Images
 Link to Docker Hub images coming soon!
 
 - check back later
