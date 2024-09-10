@@ -6,6 +6,8 @@ Readme for usage of automated Odoo backup script
 ## See bash-odoo-backup repo
 https://github.com/j-isreal/bash-odoo-backup
 
+- backup [README.md](https://github.com/j-isreal/bash-odoo-backup/blob/main/README.md)
+
 <br/><br/>
 
 ### View the project page on my website
