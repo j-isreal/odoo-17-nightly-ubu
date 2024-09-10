@@ -1,11 +1,14 @@
 # odoo-17-nightly-ubu
 Odoo 17 nightly build community edition on Ubuntu 24.04 with Postgresql 16, Let's Encrypt SSL, and Nginx proxy
 
+<br />
 
 ## Complete Guide
 View the complete guide on my website:
 
 - https://www.jinet.us/dev/dev-projects/setting-up-odoo-17-ubuntu/
+
+<br/>
 
 ## install-odoo.sh Install Script
 The ```install-odoo.sh``` BASH script installs all the dependencies and the nightly build of Odoo 17 community.  It also customizes the configuration, installs Nginx proxy, installs SSL certificates, and starts services.  _This script should be run as root._
@@ -27,7 +30,7 @@ Then, run the script with:
 
 Follow the on-screen directions to complete the install.
 
-
+<br/>
 
 
 ## Docker Image
