@@ -1,0 +1,31 @@
+version: '3.1'
+services:
+  postgres:
+    image: postgres:15
+    #user: root
+    env_file: .env
+    restart: always             # run as a service    
+    volumes:
+      - db:/var/lib/postgresql/data/pgdata
+  odoo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host
+    user: root
+    env_file: .env
+    depends_on:
+      - postgres
+    ports:
+      - "127.0.0.1:8069:8069"
+    volumes:
+      - data:/var/lib/odoo
+      - config:/etc/odoo
+      - addons:/mnt/extra-addons
+    restart: always             # run as a service
+
+volumes:
+  data:
+  config:
+  db:
+  addons:
