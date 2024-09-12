@@ -1,9 +1,9 @@
 # odoo-17-nightly-ubu
 **Odoo 17 nightly build community edition on Ubuntu Server 24.04.1 with Postgresql 16, Let's Encrypt SSL, and Nginx proxy**
 
-This project has a complete guide on my website - [see below](https://www.jinet.us/dev/dev-projects/setting-up-odoo-17-ubuntu/).
+This project has a complete guide on my website - [see below](#complete-guide).
 
-This project requires an Ubuntu Server PC or VPS/KVM with the latest version of Ubuntu Server (downloads below).
+This project requires an Ubuntu Server PC or VPS/KVM with the latest version of Ubuntu Server ([downloads below](#get-ubuntu-server-2404-running)).
 
 This project has a Docker image and docker compose file for a quick trial.  Networking will not function properly in a container without advanced setup.  <b>For best results</b>, use the instructions and a public IP and internet domain for setup of Odoo.
 
