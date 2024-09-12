@@ -1,0 +1,3 @@
+[submodule "bash-odoo-backup"]
+	path = bash-odoo-backup
+	url = git@github.com:j-isreal/bash-odoo-backup.git
