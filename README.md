@@ -5,15 +5,16 @@ This project has a complete guide on my website - [see below](#complete-guide).
 
 This project requires an Ubuntu Server PC or VPS/KVM with the latest version of Ubuntu Server ([downloads below](#get-ubuntu-server-2404-running)).
 
-This project has a Docker image and docker compose file for a quick trial.  Networking will not function properly in a container without advanced setup.  <b>For best results</b>, use the instructions and a public IP and internet domain for setup of Odoo.
+This project has [Docker images and docker compose](#docker-images) files for a quick trial.
+- Networking will not function properly in a container without advanced setup.
+- <b>For best results</b>, use the instructions in the [complete guide](#complete-guide) and a public IP and internet domain for setup of Odoo.
 
 <br />
 
 
-
 <br />
 
-## Complete Guide
+# Complete Guide
 View the complete guide on my website:
 
 - https://www.jinet.us/dev/dev-projects/setting-up-odoo-17-ubuntu/
@@ -74,7 +75,7 @@ Follow the on-screen directions to complete the install.
 
 
 ## Docker Images
-I'm creating a Docker image for use with this project since there is no Odoo 17 Ubuntu 24.04 Docker image yet.
+I'm creating a Docker image for use with this project since there is no Odoo 17 Ubuntu Server 24.04 Docker image yet.
 
 - [Docker README.md](https://github.com/j-isreal/odoo-17-nightly-ubu/blob/main/docker/README.md)
 
