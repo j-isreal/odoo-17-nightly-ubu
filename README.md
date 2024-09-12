@@ -53,6 +53,8 @@ chmod +x install-odoo.sh
 ```
 
 ### install-odoo.sh Install Script
+Once you've downloaded or cloned the Install Script, it's time to let it take care of finishing the installation and setup of Odoo 17. It's important to read the README.md file for this part. If you cloned the git repo, you can access the README.md from the cloned folder. Otherwise, continue to read this README.md file.
+
 The ```install-odoo.sh``` BASH script installs all the dependencies and the nightly build of Odoo 17 community.  It also customizes the configuration, installs Nginx proxy, installs SSL certificates, and starts services.  
 
 - **This script should be run as root.**
