@@ -38,7 +38,7 @@ Once you have installed and are logged into the basic Ubuntu Server system as ro
 
 - You may need to install git and/or wget: ```apt-get install git wget``` on debian/ubuntu
 ```
-git clone --recursive git@github.com:j-isreal/odoo-17-nightly-ubu.git
+git clone --recursive https://github.com/j-isreal/odoo-17-nightly-ubu.git
 
 OR
 
