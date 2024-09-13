@@ -158,12 +158,19 @@ ln -s /etc/nginx/sites-available/odoo-site.conf /etc/nginx/sites-enabled/
 systemctl reload nginx.service
 
 # setup Let's Encrypt SSL cert
+echo "* Installing SSL certificate..."
+echo " "
 certbot --nginx -n --agree-tos -d $DOMAIN -m $EMAIL
+
 # add a line to the odoo-site.conf to upgrade connections to SSL
-# find ssl_dhparam and add after that line
+# find ssl_dhparam and add after that line using awk
 awk -v q="'" '{print} /ssl_dhparam/ && !n {print "   add_header " q "Content-Security-Policy" q " " q "upgrade-insecure-requests" q ";"; n++}' /etc/nginx/sites-available/odoo-site.conf
 
-
-# configure Odoo odoo.conf
+# configure Odoo odoo.conf to use Nginx proxy
 echo "proxy_mode = True" >> /etc/odoo/odoo.conf
+
+# restart Nginx and Odoo
+systemctl restart nginx
+systemctl restart odoo
+
 
