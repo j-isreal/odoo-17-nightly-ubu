@@ -110,8 +110,9 @@ echo " "
 # install latest postgresql-16 from repo
 echo "* Installing Postgresql-16 database server..."
 echo " "
-curl -o /etc/apt/trusted.gpg.d/postgresql.gpg --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
-echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt noble-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+install -d /usr/share/postgresql-common/pgdg
+curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+sh -c 'echo "deb [arch=amd64, signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt noble-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 apt-get update -y
 env DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y postgresql-16
 
@@ -119,10 +120,12 @@ env DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y po
 echo "* Installing Nginx web server, UFW firewall and cerbot for SSL..."
 echo " "
 env DEBIAN_FRONTEND=noninteractive apt-get install -y nginx ufw certbot python3-certbot-nginx
+systemctl enable nginx
 
 # allow Nginx Full through firewall
 ufw allow "Nginx Full"
 ufw allow OpenSSH
+
 
 #
 
