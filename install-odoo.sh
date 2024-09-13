@@ -155,7 +155,7 @@ sed -i -e "s/yoursitedomain.com/$DOMAIN/g" /etc/nginx/sites-available/odoo-site.
 # link the file to sites-enabled
 ln -s /etc/nginx/sites-available/odoo-site.conf /etc/nginx/sites-enabled/
 # reload Nginx
-systemctl reload nginx.service
+systemctl reload nginx
 
 # setup Let's Encrypt SSL cert
 echo "* Installing SSL certificate..."

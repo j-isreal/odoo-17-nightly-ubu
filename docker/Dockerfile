@@ -22,14 +22,9 @@ RUN echo $LANG UTF-8 > /etc/locale.gen && \
 RUN env DEBIAN_FRONTEND=noninteractive apt-get purge snapd -y
 RUN env DEBIAN_FRONTEND=noninteractive apt-get autoremove --purge -y
 
-# add odoo user
-#useradd -m -d /home/odoo17 -U -r -s /bin/bash odoo17
-
 # install the Nginx server, config files, letsencrypt and ufw and allow Nginx Full
-
 RUN apt install -y nginx ufw \
         certbot python3-certbot-nginx
-
 RUN ufw allow "Nginx Full"
 RUN ufw allow OpenSSH
 
@@ -44,7 +39,7 @@ RUN certbot --nginx -n --agree-tos -d $DOMAIN -m $EMAIL
 # add a line to the odoo-site.conf to upgrade connections to SSL
 # find ssl_dhparam and add after that line using awk
 RUN awk -v q="'" '{print} /ssl_dhparam/ && !n {print "   add_header " q "Content-Security-Policy" q " " q "upgrade-insecure-requests" q ";"; n++}' /etc/nginx/sites-available/odoo-site.conf
-RUN systemctl reload nginx.service
+RUN systemctl reload nginx
 
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN apt-get update && \
@@ -89,7 +84,11 @@ RUN echo 'deb [signed-by=/usr/share/keyrings/odoo-archive-keyring.gpg] https://n
 RUN apt-get update && apt-get -y install --no-install-recommends odoo
 
 # configure Odoo odoo.conf to use Nginx proxy
-echo "proxy_mode = True" >> /etc/odoo/odoo.conf
+RUN echo "proxy_mode = True" >> /etc/odoo/odoo.conf
+
+# restart services
+RUN systemctl restart nginx
+RUN systemctl restart odoo
 
 # Expose Odoo services
 #EXPOSE 8069 8071 8072  --  we only need port 8069
