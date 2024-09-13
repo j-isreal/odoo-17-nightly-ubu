@@ -6,6 +6,8 @@ Readme for docker images and docker compose files
 
 - Project website: https://www.jinet.us/dev/dev-projects/setting-up-odoo-17-ubuntu/
 
+- Docker Image repo: https://hub.docker.com/r/jisreal/odoo-17-nightly-ubu-amd64
+
 <br />
 
 ## Edit Dockerfile
@@ -17,11 +19,11 @@ ENV EMAIL=email@yourdomain.com
 ```
 
 ## Docker Images
-Link to Docker Hub images coming soon!
+Links to Docker Hub images:
 
-- check back later
+- AMD64: https://hub.docker.com/r/jisreal/odoo-17-nightly-ubu-amd64
 
-
+- **Please** read the main readme for more info.
 
 <br/><br/>
 
