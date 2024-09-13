@@ -1,5 +1,5 @@
 # odoo-17-nightly-ubu Docker README
-Readme for docker images and docker compose files
+Readme for docker images and docker compose files - NOT READY YET!
 <br/>
 
 - **Before using these Docker files, please read the project [README.md](https://github.com/j-isreal/odoo-17-nightly-ubu/blob/main/README.md)!**
