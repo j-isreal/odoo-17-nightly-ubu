@@ -8,6 +8,13 @@ Readme for docker images and docker compose files
 
 <br />
 
+## Edit Dockerfile
+Edit the Dockerfile and put your values:
+```
+# set domain, email address for certbot SSL and Nginx config
+ENV DOMAIN=yourdomain.com
+ENV EMAIL=email@yourdomain.com
+```
 
 ## Docker Images
 Link to Docker Hub images coming soon!
@@ -17,6 +24,7 @@ Link to Docker Hub images coming soon!
 
 
 <br/><br/>
+
 ### Visit my website
 
 [https://www.jinet.us/dev/dev-projects/setting-up-odoo-17-ubuntu/](https://www.jinet.us/dev/dev-projects/setting-up-odoo-17-ubuntu/)
