@@ -20,7 +20,7 @@
 # set your domain, email address for certbot SSL and Nginx config
 # BE SURE you have a DNS A-record pointing to the IP of the domain
 #
-DOMAIN=yoursitedomain.com
+DOMAIN=yourdomain.com
 EMAIL=email@yourdomain.com
 #
 ####################################################################
