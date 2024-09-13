@@ -15,13 +15,26 @@
 # Last updated: 09-12-2024
 #
 
-# VARIABLES #################################################
+# VARIABLES ########################################################
 #
-# set domain, email address for certbot SSL and Nginx config
+# set your domain, email address for certbot SSL and Nginx config
+# BE SURE you have a DNS A-record pointing to the IP of the domain
+#
 DOMAIN=yourdomain.com
 EMAIL=email@yourdomain.com
 #
-#############################################################
+####################################################################
+
+RELEASE=noble
+
+# make sure config files we depend on exist
+if [[ ! -f odoo-site.conf ]]; then
+   echo "Necessary file odoo-site.conf does not exist!"
+   echo "Please download or clone the entire git repo with:"
+   echo "  git clone --recursive https://github.com/j-isreal/odoo-17-nightly-ubu.git"
+   echo " "
+   exit
+fi
 
 # let the user know some things before continuing
 echo " "
@@ -126,9 +139,6 @@ systemctl enable nginx
 ufw allow "Nginx Full"
 ufw allow OpenSSH
 
-
-#
-
 # Install Odoo
 echo "* Installing Odoo nightly repo and updating..."
 wget -O - https://nightly.odoo.com/odoo.key | gpg --dearmor -o /usr/share/keyrings/odoo-archive-keyring.gpg
@@ -136,4 +146,18 @@ echo "deb [signed-by=/usr/share/keyrings/odoo-archive-keyring.gpg] https://night
 echo "* Installing Odoo 17 from signed nightly repository..."
 echo " "
 apt-get update && apt-get -y install --no-install-recommends odoo
+
+# configure the Odoo site in Nginx
+cp odoo-site.conf /etc/nginx/sites-available/odoo-site.conf
+# find the yourdomain.com entry and change to DOMAIN variable
+# sed
+# link the file to sites-enabled
+ln -s /etc/nginx/sites-available/odoo-site.conf /etc/nginx/sites-enabled/
+# reload Nginx
+systemctl reload nginx.service
+
+# setup Let's Encrypt SSL cert
+certbot --nginx -n --agree-tos -d $DOMAIN -m $EMAIL
+
+
 
