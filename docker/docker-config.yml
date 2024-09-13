@@ -5,5 +5,5 @@ services:
     restart: unless-stopped             # run as a service    
     ports:
       - "127.0.0.1:8069:8069"
-      - "22:22/tcp"
-
+      - "127.0.0.1:22:222"
+      - "80:80"
