@@ -94,11 +94,5 @@ RUN systemctl restart odoo
 #EXPOSE 8069 8071 8072  --  we only need port 8069
 EXPOSE 8069
 
-# Set the default config file
-ENV ODOO_RC /etc/odoo/odoo.conf
-
-# Set default user when running the container
-#USER odoo
-
 #CMD ["odoo"]
 
