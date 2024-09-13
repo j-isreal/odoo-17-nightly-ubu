@@ -173,4 +173,18 @@ echo "proxy_mode = True" >> /etc/odoo/odoo.conf
 systemctl restart nginx
 systemctl restart odoo
 
+# done with setup and install
+# let user know to access the domain URL over https to configure
+echo "** COMPLETED Installation and Configuration!"
+echo "________________________________________________________"
+echo " "
+echo "At this point, you should be able to access Odoo using"
+echo "your domain name URL over HTTPS, i.e.:"
+echo " "
+echo "  https://odoo.yourdomain.com/"
+echo " "
+echo "Visit your Odoo site to configure your install!"
+echo " "
+echo "========================================================"
+echo " "
 
