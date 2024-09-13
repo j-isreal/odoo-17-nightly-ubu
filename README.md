@@ -3,6 +3,8 @@
 
 This project has a complete guide on my website - [see below](#complete-guide).
 
+This project contains a submodule for the odoo-backup script.  Use --recursive in git clone to download everything.
+
 This project requires an Ubuntu Server PC or VPS/KVM with the latest version of Ubuntu Server ([downloads below](#get-ubuntu-server-2404-running)).
 
 This project has [Docker images and docker compose](#docker-images) files for a quick trial.
@@ -36,7 +38,7 @@ Once you have installed and are logged into the basic Ubuntu Server system as ro
 
 - You may need to install git and/or wget: ```apt-get install git wget``` on debian/ubuntu
 ```
-git clone git@github.com:j-isreal/odoo-17-nightly-ubu.git
+git clone --recursive git@github.com:j-isreal/odoo-17-nightly-ubu.git
 
 OR
 
