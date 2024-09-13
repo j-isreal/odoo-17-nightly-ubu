@@ -45,7 +45,16 @@ git clone --recursive https://github.com/j-isreal/odoo-17-nightly-ubu.git
 OR
 
 wget https://raw.githubusercontent.com/j-isreal/odoo-17-nightly-ubu/main/install-odoo.sh
+wget https://raw.githubusercontent.com/j-isreal/odoo-17-nightly-ubu/main/odoo-site.conf
 ```
+<br/>
+
+**Change the variables at the top of the script:**
+```
+DOMAIN=yoursitedomain.com
+EMAIL=email@yourdomain.com
+```
+
 Next, change to the cloned folder and make the script executable:
 ```
 cd odoo-17-nightly-ubu/
