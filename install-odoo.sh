@@ -20,7 +20,7 @@
 # set your domain, email address for certbot SSL and Nginx config
 # BE SURE you have a DNS A-record pointing to the IP of the domain
 #
-DOMAIN=yourdomain.com
+DOMAIN=yoursitedomain.com
 EMAIL=email@yourdomain.com
 #
 ####################################################################
@@ -149,8 +149,9 @@ apt-get update && apt-get -y install --no-install-recommends odoo
 
 # configure the Odoo site in Nginx
 cp odoo-site.conf /etc/nginx/sites-available/odoo-site.conf
-# find the yourdomain.com entry and change to DOMAIN variable
-# sed
+# find the yoursitedomain.com entry and change to DOMAIN variable
+sed -i -e "s/yoursitedomain.com/$DOMAIN/g" /etc/nginx/sites-available/odoo-site.conf
+
 # link the file to sites-enabled
 ln -s /etc/nginx/sites-available/odoo-site.conf /etc/nginx/sites-enabled/
 # reload Nginx
@@ -158,6 +159,11 @@ systemctl reload nginx.service
 
 # setup Let's Encrypt SSL cert
 certbot --nginx -n --agree-tos -d $DOMAIN -m $EMAIL
+# add a line to the odoo-site.conf to upgrade connections to SSL
+# find ssl_dhparam and add after that line
+awk -v q="'" '{print} /ssl_dhparam/ && !n {print "   add_header " q "Content-Security-Policy" q " " q "upgrade-insecure-requests" q ";"; n++}' /etc/nginx/sites-available/odoo-site.conf
 
 
+# configure Odoo odoo.conf
+echo "proxy_mode = True" >> /etc/odoo/odoo.conf
 
