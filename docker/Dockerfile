@@ -15,7 +15,7 @@ RUN apt-get update -y && apt-get upgrade -y
 ENV LANG=en_US.UTF-8
 RUN echo $LANG UTF-8 > /etc/locale.gen && \
     env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-     locales && \
+     locales openssh-server && \
     update-locale --reset LANG=$LANG
 
 # remove snaps
@@ -26,20 +26,22 @@ RUN env DEBIAN_FRONTEND=noninteractive apt-get autoremove --purge -y
 RUN apt install -y nginx ufw \
         certbot python3-certbot-nginx
 RUN ufw allow "Nginx Full"
-RUN ufw allow OpenSSH
+RUN ufw allow "OpenSSH"
 
 COPY ./odoo-site.conf /etc/nginx/sites-available/odoo-site.conf
 # find the yoursitedomain.com entry and change to DOMAIN variable
 RUN sed -i -e "s/yoursitedomain.com/$DOMAIN/g" /etc/nginx/sites-available/odoo-site.conf
 RUN ln -s /etc/nginx/sites-available/odoo-site.conf /etc/nginx/sites-enabled/
-RUN systemctl reload nginx.service
-RUN certbot --nginx -n --agree-tos -d $DOMAIN -m $EMAIL
+RUN service nginx reload
+
+# CANNOT use certbot because the docker image doesn't have external network access
+#RUN certbot --nginx -n --agree-tos -d $DOMAIN -m $EMAIL
 
 # add following line to /etc/nginx/sites-available/odoo-site.conf
 # add a line to the odoo-site.conf to upgrade connections to SSL
 # find ssl_dhparam and add after that line using awk
-RUN awk -v q="'" '{print} /ssl_dhparam/ && !n {print "   add_header " q "Content-Security-Policy" q " " q "upgrade-insecure-requests" q ";"; n++}' /etc/nginx/sites-available/odoo-site.conf
-RUN systemctl reload nginx
+#RUN awk -v q="'" '{print} /ssl_dhparam/ && !n {print "   add_header " q "Content-Security-Policy" q " " q "upgrade-insecure-requests" q ";"; n++}' /etc/nginx/sites-available/odoo-site.conf
+#RUN systemctl reload nginx
 
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN apt-get update && \
@@ -69,6 +71,7 @@ RUN apt-get update && \
         python3-xlrd \
         python3-xlwt \
         xz-utils \
+        pwgen \
         wkhtmltopdf
 
 # install latest postgresql-16
@@ -86,13 +89,23 @@ RUN apt-get update && apt-get -y install --no-install-recommends odoo
 # configure Odoo odoo.conf to use Nginx proxy
 RUN echo "proxy_mode = True" >> /etc/odoo/odoo.conf
 
+# configure ssh
+RUN mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config && sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config
+RUN sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
+RUN sed -i "s/#PasswordAuthentication/PasswordAuthentication/g" /etc/ssh/sshd_config
+
 # restart services
-RUN systemctl restart nginx
-RUN systemctl restart odoo
+RUN service nginx restart
+RUN service odoo restart
+RUN service ssh restart
 
-# Expose Odoo services
+ADD set_root_pw.sh /set_root_pw.sh
+ADD run.sh /run.sh
+RUN chmod +x /*.sh
+
+# Expose Odoo services, ssh and Nginx
 #EXPOSE 8069 8071 8072  --  we only need port 8069
-EXPOSE 8069
+EXPOSE 22 8069 80 443
 
-#CMD ["odoo"]
+CMD ["/run.sh"]
 
