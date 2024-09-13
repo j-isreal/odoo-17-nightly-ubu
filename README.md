@@ -3,7 +3,9 @@
 
 This project has a complete guide on my website - [see below](#complete-guide).
 
-This project contains a submodule for the odoo-backup script.  Use --recursive in git clone to download everything.
+**This project contains a submodule** for the bash-odoo-backup script.  
+- Use --recursive in git clone to download everything.
+- If you download the zip from web, it **will not** download the backup script.  Use ```git clone --recursive``` or [download the files here](https://github.com/j-isreal/bash-odoo-backup).
 
 This project requires an Ubuntu Server PC or VPS/KVM with the latest version of Ubuntu Server ([downloads below](#get-ubuntu-server-2404-running)).
 
