@@ -36,6 +36,12 @@ if [[ ! -f odoo-site.conf ]]; then
    exit
 fi
 
+# make sure running as root
+if [[ "$EUID" -ne 0 ]]; then
+	echo "This installer needs to be run with superuser privileges."
+	exit
+fi
+
 # let the user know some things before continuing
 echo " "
 echo "========================================================"
